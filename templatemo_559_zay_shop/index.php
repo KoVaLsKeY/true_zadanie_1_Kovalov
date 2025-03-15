@@ -270,7 +270,7 @@ https://templatemo.com/tm-559-zay-shop
             </div>
         </div>
     </section>
-    <!-- End Featured Product -->
+    <!-- End Featured Product-->
 
 
     <!-- Start Footer -->
