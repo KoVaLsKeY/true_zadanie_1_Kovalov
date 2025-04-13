@@ -18,13 +18,15 @@ try{
 $meno = $_POST["meno"];
 $email = $_POST["email"];
 $sprava = $_POST["sprava"];
+$objekt = $_POST["objekt"];
 
-$sql = "INSERT INTO udaje (meno, email, sprava)
-VALUE ('".$meno."', '".$email."','".$sprava."')";
+
+$sql = "INSERT INTO udaje (meno, email, sprava, objekt)
+VALUE ('$meno', '$email','$sprava', '$objekt')";
 $statement = $conn->prepare($sql);
 try {
     $insert = $statement->execute();
-header("Location:http://localhost/ProjectSJ/includes/vdaka.php");
+header("Location:http://localhost/ProjectProject/templatemo_559_zay_shop/vdaka.php");
 return $insert;
 } catch (Exception $exception){
     return false;
