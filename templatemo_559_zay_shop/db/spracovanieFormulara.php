@@ -27,8 +27,9 @@ $statement = $conn->prepare($sql);
 try {
     $insert = $statement->execute();
 header("Location:http://localhost/ProjectProject/templatemo_559_zay_shop/vdaka.php");
-return $insert;
+exit;
 } catch (Exception $exception){
+    http_response_code(404);
     return false;
 }
 $conn = null;
