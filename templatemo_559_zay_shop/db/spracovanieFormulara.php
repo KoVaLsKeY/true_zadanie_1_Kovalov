@@ -21,7 +21,7 @@ $sprava = $_POST["sprava"];
 $objekt = $_POST["objekt"];
 
 
-$sql = "INSERT INTO udaje (meno, email, sprava, objekt)
+$sql = "INSERT INTO udaje (meno, emailik, sprava, objekt)
 VALUE ('$meno', '$email','$sprava', '$objekt')";
 $statement = $conn->prepare($sql);
 try {
@@ -29,7 +29,7 @@ try {
 header("Location:http://localhost/ProjectProject/templatemo_559_zay_shop/vdaka.php");
 exit;
 } catch (Exception $exception){
-    http_response_code(404);
+    header("HTTP/1.1 301 Moved Permanently");
     return false;
 }
 $conn = null;
