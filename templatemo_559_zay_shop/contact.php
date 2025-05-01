@@ -5,7 +5,6 @@
     <title>Zay Shop - Contact</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<?php include_once 'head.php';?>
 
     <link rel="apple-touch-icon" href="img/apple-icon.png">
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
@@ -146,6 +145,12 @@ include_once 'header.php';
         </div>
     </div>
     <!-- End Contact -->
+     <div><?php include_once "classes/qna.php";
+     use otazkyOdpovede\QnA;
+     $qna = new QnA();
+     $qna->insertQnA();
+     ?>
+     </div>
 
 
     <!-- Start Footer -->
