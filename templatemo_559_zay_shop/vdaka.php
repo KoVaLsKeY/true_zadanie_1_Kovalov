@@ -1,3 +1,4 @@
+<?php ?>
 <!DOCTYPE html>
 <html lang="sk">
 <head>
@@ -11,7 +12,7 @@
         <h1>Ďakujeme!</h1>
         <p>Vaša odpoveď bola úspešne odoslaná.</p>
         <p>V priebehu najbližšieho času Vás bude kontaktovať náš manažér.</p>
-        <a href="home.html">Späť na hlavnú stránku</a>
+        <a href="index.php">Späť na hlavnú stránku</a>
     </div>
 </body>
 </html>

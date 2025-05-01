@@ -1,35 +1,23 @@
 <?php
-$host="localhost";
-$dbname = "formular";
-$port = 3306;
-$username = "root";
-$password = "";
+require_once('../classes/contactClass.php');
+use formular\ContactClass;
 
-$options = array(
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-);
-try{
-    $conn = new PDO('mysql:host='.$host.';dbname='.$dbname.";port=".$port, $username,
-    $password, $options);
-} catch(PDOException $e){
-    die("Chyba pripojenia: ".$e->getMessage());
+
+$meno = $_POST['meno'];
+$email = $_POST['email'];
+$sprava = $_POST['sprava'];
+$objekt = $_POST['objekt'];
+
+if(empty($meno) || empty($email)|| empty($sprava) || empty($objekt)){
+    die('Chyba: Všetky polia sú povinné!');
 }
-$meno = $_POST["meno"];
-$email = $_POST["email"];
-$sprava = $_POST["sprava"];
-$objekt = $_POST["objekt"];
-
-
-$sql = "INSERT INTO udaje (meno, emailik, sprava, objekt)
-VALUE ('$meno', '$email','$sprava', '$objekt')";
-$statement = $conn->prepare($sql);
-try {
-    $insert = $statement->execute();
-header("Location:http://localhost/ProjectProject/templatemo_559_zay_shop/vdaka.php");
-exit;
-} catch (Exception $exception){
-    header("HTTP/1.1 301 Moved Permanently");
-    return false;
+$kontakt = new ContactClass();
+$ulozene = $kontakt->ulozitSpravu($meno, $email, $sprava, $objekt);
+if($ulozene){
+    header("Location:http://localhost/ProjectProject/templatemo_559_zay_shop/vdaka.php");
 }
-$conn = null;
+else{
+    die('Chyba pri odoslani spravy do databazy!');
+    http_response_code(404);
+}
+
