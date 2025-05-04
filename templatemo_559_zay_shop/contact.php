@@ -145,12 +145,7 @@ include_once 'header.php';
         </div>
     </div>
     <!-- End Contact -->
-     <div><?php include_once "classes/qna.php";
-     use otazkyOdpovede\QnA;
-     $qna = new QnA();
-     $qna->insertQnA();
-     ?>
-     </div>
+    
 
 
     <!-- Start Footer -->
