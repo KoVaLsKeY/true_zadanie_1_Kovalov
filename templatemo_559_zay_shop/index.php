@@ -1,3 +1,5 @@
+<?php
+session_start(); ?>
 <?php include_once "functions.php"?>
 <!DOCTYPE html>
 <html lang="en">
@@ -255,13 +257,10 @@
 
 <!-- FAQ start-->
 
-
-
 <?php include_once('db/otazky.php'); ?>
 
-
-
 <!-- FAQ end-->
+
 
     <!-- Start Footer -->
     <?php include 'footer.php';?>

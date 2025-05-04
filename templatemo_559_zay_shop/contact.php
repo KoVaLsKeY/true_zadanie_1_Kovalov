@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -112,38 +117,53 @@ include_once 'header.php';
 
     <!-- Start Contact -->
     <div class="container py-5">
-        <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post" id="contact" action="db/spracovanieFormulara.php" role="form">
-                <div class="row">
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="inputname">Name</label>
-                        <input type="text" class="form-control mt-1" id="meno" name="meno" placeholder="Name" required>
-                    </div>
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="inputemail">Email</label>
-                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email" required>
-                    </div>
+    <div class="row py-5">
+        <form class="col-md-9 m-auto" method="post" id="contact" action="db/spracovanieFormulara.php" role="form">
+            <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                    <label for="inputname">Name</label>
+                    <input type="text" class="form-control mt-1" id="meno" name="meno" placeholder="Name"
+                           value="<?= isset($_SESSION['user']['meno']) ? htmlspecialchars($_SESSION['user']['meno']) : '' ?>"
+                           <?= isset($_SESSION['user']) ? 'readonly' : '' ?>>
                 </div>
-                <div class="mb-3">
-                    <label for="inputsubject">Subject</label>
-                    <input type="text" class="form-control mt-1" id="subject" name="objekt" placeholder="Subject" required>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="inputemail">Email</label>
+                    <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email"
+                           value="<?= isset($_SESSION['user']['email']) ? htmlspecialchars($_SESSION['user']['email']) : '' ?>"
+                           <?= isset($_SESSION['user']) ? 'readonly' : '' ?>>
                 </div>
-                <div class="mb-3">
-                    <label for="inputmessage">Message</label>
-                    <textarea class="form-control mt-1" id="sprava" name="sprava" placeholder="Message" rows="8" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="inputsubject">Subject</label>
+                <input type="text" class="form-control mt-1" id="subject" name="objekt" placeholder="Subject" required>
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Message</label>
+                <textarea class="form-control mt-1" id="sprava" name="sprava" placeholder="Message" rows="8" required></textarea>
+            </div>
+            <div class="mb-3">
+                <input type="checkbox" name="suhlas" id="check" required>
+                <label for="check">Súhlasím so spracovaním údajov</label>
+            </div>
+
+            <?php if (!isset($_SESSION['user'])): ?>
+                <p class="text-danger text-center">Pre odoslanie správy sa prosím <a href="login.php">prihlás</a>.</p>
+            <?php endif; ?>
+
+            <div class="row">
+                <div class="col text-end mt-2">
+                    <button type="submit" class="btn btn-success btn-lg px-3"
+                        <?= !isset($_SESSION['user']) ? 'disabled' : '' ?>>
+                        Let’s Talk
+                    </button>
                 </div>
-                <div class= "mb-3">
-                   <input type = "checkbox" name = "" id = "check" required>
-                   <label for="check">Suhlasim so spracovanim udajov</label>
+            </div>
+        </form>
     </div>
-                <div class="row">
-                    <div class="col text-end mt-2">
-                        <button type="submit" class="btn btn-success btn-lg px-3">Let’s Talk</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+</div>
+
+
+    
     <!-- End Contact -->
     
 
