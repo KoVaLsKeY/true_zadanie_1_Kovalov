@@ -29,22 +29,8 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Všetci používatelia</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
-        .back-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+<?php include_once('assets_sablon/css/backButton.css')?>
+</style>
 </head>
 <body class="container mt-5">
 
