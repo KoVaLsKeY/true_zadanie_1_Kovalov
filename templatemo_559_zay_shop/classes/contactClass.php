@@ -1,6 +1,6 @@
 <?php
 namespace formular;
-require_once('../db/dbConfig.php');
+require_once('C:/xampp/htdocs/ProjectProject/templatemo_559_zay_shop/db/dbConfig.php');
 use PDO;
 
 class ContactClass{
@@ -38,4 +38,16 @@ return http_response_code(404);
 public function __destruct(){
     $this->conn = null;
 }
+
+public function getOtazkyZUdaje() {
+    $sql = "SELECT meno, email, sprava, objekt, odpoved FROM udaje WHERE odpoved IS NOT NULL";
+    try {
+        $statement = $this->conn->prepare($sql);
+        $statement->execute();
+        return $statement->fetchAll();
+    } catch (PDOException $e) {
+        die("Chyba pri načítaní údajov: " . $e->getMessage());
+    }
+}
+
 }

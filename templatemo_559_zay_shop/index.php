@@ -253,6 +253,15 @@
     </section>
     <!-- End Featured Product  -->
 
+<!-- FAQ start-->
+
+
+
+<?php include_once('db/otazky.php'); ?>
+
+
+
+<!-- FAQ end-->
 
     <!-- Start Footer -->
     <?php include 'footer.php';?>

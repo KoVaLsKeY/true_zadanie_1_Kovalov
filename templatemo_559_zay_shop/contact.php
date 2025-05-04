@@ -117,20 +117,20 @@ include_once 'header.php';
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
                         <label for="inputname">Name</label>
-                        <input type="text" class="form-control mt-1" id="meno" name="meno" placeholder="Name">
+                        <input type="text" class="form-control mt-1" id="meno" name="meno" placeholder="Name" required>
                     </div>
                     <div class="form-group col-md-6 mb-3">
                         <label for="inputemail">Email</label>
-                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email">
+                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email" required>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="inputsubject">Subject</label>
-                    <input type="text" class="form-control mt-1" id="subject" name="objekt" placeholder="Subject">
+                    <input type="text" class="form-control mt-1" id="subject" name="objekt" placeholder="Subject" required>
                 </div>
                 <div class="mb-3">
                     <label for="inputmessage">Message</label>
-                    <textarea class="form-control mt-1" id="sprava" name="sprava" placeholder="Message" rows="8"></textarea>
+                    <textarea class="form-control mt-1" id="sprava" name="sprava" placeholder="Message" rows="8" required></textarea>
                 </div>
                 <div class= "mb-3">
                    <input type = "checkbox" name = "" id = "check" required>
