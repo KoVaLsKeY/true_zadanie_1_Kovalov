@@ -49,7 +49,7 @@
           <?php if (isset($_SESSION['user']) && $_SESSION['user']['rola'] === 'admin')
 : ?>
             <li class="nav-item">
-              <a class="nav-link" href="admin_panel.php" title="Admin Panel">
+              <a class="nav-link" href="adminPanel.php" title="Admin Panel">
                 <i class="fas fa-cogs"></i> Admin Panel
               </a>
             </li>

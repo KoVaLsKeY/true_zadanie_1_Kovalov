@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user']) || $_SESSION['user']['rola'] !== 'admin') {
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit;
 }
 
@@ -34,7 +34,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body class="container mt-5">
 
-    <a href="admin_panel.php" class="back-button">← Späť do admin panelu</a>
+    <a href="adminPanel.php" class="back-button">← Späť do admin panelu</a>
 
     <h2 class="mb-4">Zoznam používateľov</h2>
     <table class="table table-bordered">

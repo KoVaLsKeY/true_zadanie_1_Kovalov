@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('classes/userClass.php');
+require_once('../classes/userClass.php');
 use user\UserClass;
 
 $user = new UserClass();
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $heslo = $_POST['heslo'] ?? '';
 
     if ($user->login($email, $heslo)) {
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit;
     } else {
         echo "<p style='color:red;text-align:center;'>Nesprávny email alebo heslo.</p>";

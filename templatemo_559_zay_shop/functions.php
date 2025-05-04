@@ -1,12 +1,12 @@
 <?php
-function greet($name) {
+function greet() {
     $hour = date("H");
     if ($hour < 12) {
-        return "Good morning, $name!";
+        return "Good morning, " .  $_SESSION['user']['meno'] . "!";
     } elseif ($hour < 18) {
-        return "Good afternoon, $name!";
+        return "Good afternoon, " . $_SESSION['user']['meno'].  "!";
     } else {
-        return "Good evening, $name!";
+        return "Good evening, " .  $_SESSION['user']['meno'] . "!";
     }
     
 }

@@ -247,7 +247,7 @@ session_start(); ?>
                             <p class="text-muted">Reviews (74)</p>
                         </div>
                     </div>
-                    <?php echo greet("pane")?>
+                    <?php echo greet()?>
                 </div>
             </div>
         </div>
