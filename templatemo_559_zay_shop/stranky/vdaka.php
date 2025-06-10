@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ďakujeme</title>
     <style>
-<?php include_once('assets_sablon/css/vdaka.css')?>
+<?php include_once('../assets_sablon/css/vdaka.css')?>
 
     </style>
 </head>

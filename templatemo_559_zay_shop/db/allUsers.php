@@ -6,7 +6,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['rola'] !== 'admin') {
     exit;
 }
 
-require_once 'db/dbConfig.php';
+require_once 'dbConfig.php';
 
 $db = DATABASE;
 
@@ -29,12 +29,12 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Všetci používatelia</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
-<?php include_once('assets_sablon/css/backButton.css')?>
+<?php include_once('../assets_sablon/css/backButton.css')?>
 </style>
 </head>
 <body class="container mt-5">
 
-    <a href="adminPanel.php" class="back-button">← Späť do admin panelu</a>
+    <a href="../admin/adminPanel.php" class="back-button">← Späť do admin panelu</a>
 
     <h2 class="mb-4">Zoznam používateľov</h2>
     <table class="table table-bordered">
@@ -56,7 +56,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= htmlspecialchars($user['rola']) ?></td>
                     <td>
                         <?php if ($user['rola'] !== 'admin'): ?>
-                            <form method="post" action="makeAdmin.php" onsubmit="return confirm('Určite chceš povýšiť tohto používateľa na administrátora?');">
+                            <form method="post" action="../admin/makeAdmin.php" onsubmit="return confirm('Určite chceš povýšiť tohto používateľa na administrátora?');">
                                 <input type="hidden" name="user_id" value="<?= $user['id_user'] ?>">
                                 <button type="submit" class="btn btn-warning btn-sm">Urobiť admina</button>
                             </form>

@@ -1,10 +1,10 @@
 <?php
 session_start(); ?>
-<?php include_once "functions.php"?>
+<?php include_once "../functions.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once "head.php"?>
+<?php include_once "../includes/head.php" ?>
 
 <body>
     <!-- Start Top Nav -->
@@ -30,7 +30,7 @@ session_start(); ?>
 
 
     <!-- Header -->
-   <?php include 'header.php'; ?>
+   <?php include '../includes/header.php'; ?>
     <!-- Close Header -->
 
     <!-- Modal -->
@@ -64,7 +64,7 @@ session_start(); ?>
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets_sablon/img/banner_img_01.jpg" alt="">
+                            <img class="img-fluid" src="../assets_sablon/img/banner_img_01.jpg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
@@ -86,7 +86,7 @@ session_start(); ?>
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets_sablon/img/banner_img_02.jpg" alt="">
+                            <img class="img-fluid" src="../assets_sablon/img/banner_img_02.jpg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -105,7 +105,7 @@ session_start(); ?>
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets_sablon/img/banner_img_03.jpg" alt="">
+                            <img class="img-fluid" src="../assets_sablon/img/banner_img_03.jpg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -144,17 +144,17 @@ session_start(); ?>
         </div>
         <div class="row">
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="./assets_sablon/img/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
+                <a href="#"><img src="../assets_sablon/img/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
                 <h5 class="text-center mt-3 mb-3">Watches</h5>
                 <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
             </div>
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="./assets_sablon/img/category_img_02.jpg" class="rounded-circle img-fluid border"></a>
+                <a href="#"><img src="../assets_sablon/img/category_img_02.jpg" class="rounded-circle img-fluid border"></a>
                 <h2 class="h5 text-center mt-3 mb-3">Shoes</h2>
                 <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
             </div>
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="./assets_sablon/img/category_img_03.jpg" class="rounded-circle img-fluid border"></a>
+                <a href="#"><img src="../assets_sablon/img/category_img_03.jpg" class="rounded-circle img-fluid border"></a>
                 <h2 class="h5 text-center mt-3 mb-3">Accessories</h2>
                 <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
             </div>
@@ -179,7 +179,7 @@ session_start(); ?>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="shop-single.php">
-                            <img src="./assets_sablon/img/feature_prod_01.jpg" class="card-img-top" alt="...">
+                            <img src="../assets_sablon/img/feature_prod_01.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
@@ -203,7 +203,7 @@ session_start(); ?>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="shop-single.php">
-                            <img src="./assets_sablon/img/feature_prod_02.jpg" class="card-img-top" alt="...">
+                            <img src="../assets_sablon/img/feature_prod_02.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
@@ -227,7 +227,7 @@ session_start(); ?>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="shop-single.php">
-                            <img src="./assets_sablon/img/feature_prod_03.jpg" class="card-img-top" alt="...">
+                            <img src="../assets_sablon/img/feature_prod_03.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
@@ -257,21 +257,21 @@ session_start(); ?>
 
 <!-- FAQ start-->
 
-<?php include_once('db/otazky.php'); ?>
+<?php include_once('../db/otazky.php'); ?>
 
 <!-- FAQ end-->
 
 
     <!-- Start Footer -->
-    <?php include 'footer.php';?>
+    <?php include '../includes/footer.php';?>
     <!-- End Footer -->
 
     <!-- Start Script -->
-    <script src="assets_sablon/js/jquery-1.11.0.min.js"></script>
-    <script src="assets_sablon/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="assets_sablon/js/bootstrap.bundle.min.js"></script>
-    <script src="assets_sablon/js/templatemo.js"></script>
-    <script src="assets_sablon/js/custom.js"></script>
+    <script src="../assets_sablon/js/jquery-1.11.0.min.js"></script>
+    <script src="../assets_sablon/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../assets_sablon/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets_sablon/js/templatemo.js"></script>
+    <script src="../assets_sablon/js/custom.js"></script>
     <!-- End Script -->
 </body>
 

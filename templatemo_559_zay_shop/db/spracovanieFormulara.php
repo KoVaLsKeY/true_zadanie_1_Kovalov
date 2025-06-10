@@ -14,7 +14,7 @@ if(empty($meno) || empty($email)|| empty($sprava) || empty($objekt)){
 $kontakt = new ContactClass();
 $ulozene = $kontakt->ulozitSpravu($meno, $email, $sprava, $objekt);
 if($ulozene){
-    header("Location:http://localhost/ProjectProject/templatemo_559_zay_shop/vdaka.php");
+    header("Location:http://localhost/true_zadanie_1_Kovalov/templatemo_559_zay_shop/stranky/vdaka.php");
 }
 else{
     die('Chyba pri odoslani spravy do databazy!');

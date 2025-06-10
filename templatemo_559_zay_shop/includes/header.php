@@ -6,7 +6,7 @@
 <nav class="navbar navbar-expand-lg navbar-light shadow">
   <div class="container d-flex justify-content-between align-items-center">
 
-    <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
+    <a class="navbar-brand text-success logo h1 align-self-center" href="../stranky/index.php">
       Zay
     </a>
 
@@ -21,16 +21,16 @@
       <div class="flex-fill">
         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.php">Home</a>
+            <a class="nav-link" href="../stranky/index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="about.php">About</a>
+            <a class="nav-link" href="../stranky/about.php">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="shop.php">Shop</a>
+            <a class="nav-link" href="../stranky/shop.php">Shop</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact.php">Contact</a>
+            <a class="nav-link" href="../stranky/contact.php">Contact</a>
           </li>
 
           <!-- Пункт для логіну / вітання та виходу -->
@@ -39,9 +39,9 @@
               <a class="nav-link" href="#">
                 Vitaj, <?= htmlspecialchars($_SESSION['user']['meno']) ?>
               </a>
-              <a class="nav-link text-danger" href="logout.php">Odhlásiť sa</a>
+              <a class="nav-link text-danger" href="../includes/pripojenie/logout.php">Odhlásiť sa</a>
             <?php else: ?>
-              <a class="nav-link text-primary" href="login.php">Prihlásiť sa</a>
+              <a class="nav-link text-primary" href="../includes/pripojenie/login.php">Prihlásiť sa</a>
             <?php endif; ?>
           </li>
 
@@ -49,7 +49,7 @@
           <?php if (isset($_SESSION['user']) && $_SESSION['user']['rola'] === 'admin')
 : ?>
             <li class="nav-item">
-              <a class="nav-link" href="adminPanel.php" title="Admin Panel">
+              <a class="nav-link" href="../admin/adminPanel.php" title="Admin Panel">
                 <i class="fas fa-cogs"></i> Admin Panel
               </a>
             </li>

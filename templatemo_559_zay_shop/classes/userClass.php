@@ -1,6 +1,6 @@
 <?php
 namespace user;
-require_once('C:/xampp/htdocs/ProjectProject/templatemo_559_zay_shop/db/dbConfig.php');
+require_once('../../db/dbConfig.php');
 use PDO;
 
 class UserClass {

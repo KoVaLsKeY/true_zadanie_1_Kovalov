@@ -1,5 +1,5 @@
 <?php
-require_once('classes/contactClass.php');
+require_once('../classes/contactClass.php');
 use formular\ContactClass;
 
 // Виводимо стилі inline

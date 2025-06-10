@@ -6,7 +6,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['rola'] !== 'admin') {
     exit;
 }
 
-require_once 'db/dbConfig.php';
+require_once '../db/dbConfig.php';
 
 $db = DATABASE;
 
@@ -29,12 +29,12 @@ try {
     <title>Všetky otázky</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
-<?php include_once('assets_sablon/css/backButton.css')?>
+<?php include_once('../assets_sablon/css/backButton.css')?>
     </style>
 </head>
 <body class="container mt-5">
 
-    <a href="adminPanel.php" class="back-button">← Späť do admin panelu</a>
+    <a href="../admin/adminPanel.php" class="back-button">← Späť do admin panelu</a>
 
     <h2 class="mb-4">Všetky otázky</h2>
 
@@ -52,7 +52,7 @@ try {
                     <td><?= htmlspecialchars($q['sprava']) ?></td>
                     <td><?= $q['odpoved'] ? htmlspecialchars($q['odpoved']) : '<em>Bez odpovede</em>' ?></td>
                     <td>
-                        <a href="editQuestion.php?id=<?= $q['id_otazky'] ?>" class="btn btn-sm btn-warning">Upraviť</a>
+                        <a href="../admin/editQuestion.php?id=<?= $q['id_otazky'] ?>" class="btn btn-sm btn-warning">Upraviť</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

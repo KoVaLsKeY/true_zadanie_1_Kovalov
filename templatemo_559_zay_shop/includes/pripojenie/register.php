@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('classes/userClass.php');
+require_once('../../classes/userClass.php');
 use user\UserClass;
 
 $user = new UserClass();

@@ -6,32 +6,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <title>Zay Shop - Contact</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="apple-touch-icon" href="img/apple-icon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-
-    <link rel="stylesheet" href="assets_sablon/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets_sablon/css/templatemo.css">
-    <link rel="stylesheet" href="assets_sablon/css/custom.css">
-
-    <!-- Load fonts style after rendering the layout styles -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="assets_sablon/css/fontawesome.min.css">
-
-    <!-- Load map styles -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
-<!--
-    
-TemplateMo 559 Zay Sho
-
-https://templatemo.com/tm-559-zay-shop
-
--->
-</head>
+<?php include_once '../includes/head.php' ?>
 
 <body>
     <!-- Start Top Nav -->
@@ -58,7 +33,7 @@ https://templatemo.com/tm-559-zay-shop
 
     <!-- Header -->
     <?php
-include_once 'header.php';
+include_once '../includes/header.php';
  ?>
     <!-- Close Header -->
 
@@ -92,33 +67,33 @@ include_once 'header.php';
     </div>
 
     <!-- Start Map -->
-    <div id="mapid" style="width: 100%; height: 300px;"></div>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-    <script>
-        var mymap = L.map('mapid').setView([-23.013104, -43.394365, 13], 13);
-
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-            maxZoom: 18,
-            attribution: 'Zay Telmplte | Template Design by <a href="https://templatemo.com/">Templatemo</a> | Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-                '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            id: 'mapbox/streets-v11',
-            tileSize: 512,
-            zoomOffset: -1
-        }).addTo(mymap);
-
-        L.marker([-23.013104, -43.394365, 13]).addTo(mymap)
-            .bindPopup("<b>Zay</b> eCommerce Template<br />Location.").openPopup();
-
-        mymap.scrollWheelZoom.disable();
-        mymap.touchZoom.disable();
-    </script>
+<!--    <div id="mapid" style="width: 100%; height: 300px;"></div>-->
+<!--    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>-->
+<!--    <script>-->
+<!--        var mymap = L.map('mapid').setView([-23.013104, -43.394365, 13], 13);-->
+<!---->
+<!--        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {-->
+<!--            maxZoom: 18,-->
+<!--            attribution: 'Zay Telmplte | Template Design by <a href="https://templatemo.com/">Templatemo</a> | Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +-->
+<!--                '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +-->
+<!--                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',-->
+<!--            id: 'mapbox/streets-v11',-->
+<!--            tileSize: 512,-->
+<!--            zoomOffset: -1-->
+<!--        }).addTo(mymap);-->
+<!---->
+<!--        L.marker([-23.013104, -43.394365, 13]).addTo(mymap)-->
+<!--            .bindPopup("<b>Zay</b> eCommerce Template<br />Location.").openPopup();-->
+<!---->
+<!--        mymap.scrollWheelZoom.disable();-->
+<!--        mymap.touchZoom.disable();-->
+<!--    </script>-->
     <!-- Ena Map -->
 
     <!-- Start Contact -->
     <div class="container py-5">
     <div class="row py-5">
-        <form class="col-md-9 m-auto" method="post" id="contact" action="db/spracovanieFormulara.php" role="form">
+        <form class="col-md-9 m-auto" method="post" id="contact" action="../db/spracovanieFormulara.php" role="form">
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
                     <label for="inputname">Name</label>
@@ -147,7 +122,7 @@ include_once 'header.php';
             </div>
 
             <?php if (!isset($_SESSION['user'])): ?>
-                <p class="text-danger text-center">Pre odoslanie správy sa prosím <a href="login.php">prihlás</a>.</p>
+                <p class="text-danger text-center">Pre odoslanie správy sa prosím <a href="../includes/pripojenie/login.php">prihlás</a>.</p>
             <?php endif; ?>
 
             <div class="row">
@@ -169,15 +144,15 @@ include_once 'header.php';
 
 
     <!-- Start Footer -->
-<?php include_once('footer.php') ?>
+<?php include_once('../includes/footer.php') ?>
     <!-- End Footer -->
 
     <!-- Start Script -->
-    <script src="assets_sablon/js/jquery-1.11.0.min.js"></script>
-    <script src="assets_sablon/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="assets_sablon/js/bootstrap.bundle.min.js"></script>
-    <script src="assets_sablon/js/templatemo.js"></script>
-    <script src="assets_sablon/js/custom.js"></script>
+    <script src="../assets_sablon/js/jquery-1.11.0.min.js"></script>
+    <script src="../assets_sablon/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../assets_sablon/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets_sablon/js/templatemo.js"></script>
+    <script src="../assets_sablon/js/custom.js"></script>
     
     <!-- End Script -->
 </body>

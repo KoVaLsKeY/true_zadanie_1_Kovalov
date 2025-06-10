@@ -6,7 +6,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['rola'] !== 'admin') {
     exit;
 }
 
-require_once 'db/dbConfig.php';
+require_once '../db/dbConfig.php';
 
 $db = DATABASE;
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $update = $pdo->prepare("UPDATE udaje SET sprava = ?, odpoved = ? WHERE id_otazky = ?");
     $update->execute([$question, $answer ?: null, $id]);
 
-    header("Location: allQuestions.php");
+    header("Location: ../db/allQuestions.php");
     exit;
 }
 
@@ -65,7 +65,7 @@ if (!$questionData) {
             <textarea name="odpoved" id="odpoved" class="form-control" rows="3"><?= htmlspecialchars($questionData['odpoved'] ?? '') ?></textarea>
         </div>
         <button type="submit" class="btn btn-success">Uložiť</button>
-        <a href="allQuestions.php" class="btn btn-secondary">Späť</a>
+        <a href="../db/allQuestions.php" class="btn btn-secondary">Späť</a>
     </form>
 </body>
 </html>

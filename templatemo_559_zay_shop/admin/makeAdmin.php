@@ -10,7 +10,7 @@ if (!isset($_POST['user_id']) || !is_numeric($_POST['user_id'])) {
     die('Neplatné ID používateľa.');
 }
 
-require_once 'db/dbConfig.php';
+require_once '../db/dbConfig.php';
 $db = DATABASE;
 
 try {
@@ -34,7 +34,7 @@ try {
     $update = $pdo->prepare("UPDATE users SET rola = 'admin' WHERE id_user = ?");
     $update->execute([$_POST['user_id']]);
 
-    header('Location: allUsers.php');
+    header('Location: db/allUsers.php');
     exit;
 } catch (PDOException $e) {
     die("Chyba databázy: " . $e->getMessage());

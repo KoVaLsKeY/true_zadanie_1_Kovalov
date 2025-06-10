@@ -1,6 +1,6 @@
 <?php
 namespace formular;
-require_once('C:/xampp/htdocs/ProjectProject/templatemo_559_zay_shop/db/dbConfig.php');
+require_once('../db/dbConfig.php');
 use PDO;
 
 class ContactClass{
@@ -28,7 +28,7 @@ VALUE ('$meno', '$email','$sprava', '$objekt')";
 $statement = $this ->conn->prepare($sql);
 try {
     $insert = $statement->execute();
-header("Location:http://localhost/ProjectProject/templatemo_559_zay_shop/vdaka.php");
+header("Location:http://localhost/true_zadanie_1_Kovalov/templatemo_559_zay_shop/stranky/vdaka.php");
 http_response_code(200);
 return $insert;
 } catch (Exception $exception){

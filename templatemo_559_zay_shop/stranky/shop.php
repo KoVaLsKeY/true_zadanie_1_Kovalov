@@ -3,29 +3,7 @@ session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <title>Zay Shop - Product Listing Page</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="apple-touch-icon" href="assets_sablon/img/apple-icon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="assets_sablon/img/favicon.ico">
-
-    <link rel="stylesheet" href="assets_sablon/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets_sablon/css/templatemo.css">
-    <link rel="stylesheet" href="assets_sablon/css/custom.css">
-
-    <!-- Load fonts style after rendering the layout styles -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="assets_sablon/css/fontawesome.min.css">
-<!--
-    
-TemplateMo 559 Zay Shop
-
-https://templatemo.com/tm-559-zay-shop
-
--->
-</head>
+<?php include_once '../includes/head.php' ?>
 
 <body>
     <!-- Start Top Nav -->
@@ -51,7 +29,7 @@ https://templatemo.com/tm-559-zay-shop
 
 
     <!-- Header -->
-<?php include_once('header.php')?>
+<?php include_once('../includes/header.php') ?>
     <!-- Close Header -->
 
     <!-- Modal -->
@@ -143,7 +121,7 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets_sablon/img/shop_01.jpg">
+                                <img class="card-img rounded-0 img-fluid" src="../assets_sablon/img/shop_01.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
@@ -180,7 +158,7 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets_sablon/img/shop_02.jpg">
+                                <img class="card-img rounded-0 img-fluid" src="../assets_sablon/img/shop_02.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
@@ -217,7 +195,7 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets_sablon/img/shop_03.jpg">
+                                <img class="card-img rounded-0 img-fluid" src="../assets_sablon/img/shop_03.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
@@ -254,7 +232,7 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets_sablon/img/shop_04.jpg">
+                                <img class="card-img rounded-0 img-fluid" src="../assets_sablon/img/shop_04.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
@@ -291,7 +269,7 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets_sablon/img/shop_05.jpg">
+                                <img class="card-img rounded-0 img-fluid" src="../assets_sablon/img/shop_05.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
@@ -328,7 +306,7 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets_sablon/img/shop_06.jpg">
+                                <img class="card-img rounded-0 img-fluid" src="../assets_sablon/img/shop_06.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
@@ -365,7 +343,7 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets_sablon/img/shop_07.jpg">
+                                <img class="card-img rounded-0 img-fluid" src="../assets_sablon/img/shop_07.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
@@ -402,7 +380,7 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets_sablon/img/shop_08.jpg">
+                                <img class="card-img rounded-0 img-fluid" src="../assets_sablon/img/shop_08.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
@@ -439,7 +417,7 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets_sablon/img/shop_09.jpg">
+                                <img class="card-img rounded-0 img-fluid" src="../assets_sablon/img/shop_09.jpg">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
@@ -524,16 +502,16 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="carousel-item active">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_01.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_01.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_02.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_02.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_03.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_03.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_04.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_04.png" alt="Brand Logo"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -543,16 +521,16 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="carousel-item">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_01.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_01.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_02.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_02.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_03.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_03.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_04.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_04.png" alt="Brand Logo"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -562,16 +540,16 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="carousel-item">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_01.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_01.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_02.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_02.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_03.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_03.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_04.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_04.png" alt="Brand Logo"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -694,11 +672,11 @@ https://templatemo.com/tm-559-zay-shop
     <!-- End Footer -->
 
     <!-- Start Script -->
-    <script src="assets_sablon/js/jquery-1.11.0.min.js"></script>
-    <script src="assets_sablon/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="assets_sablon/js/bootstrap.bundle.min.js"></script>
-    <script src="assets_sablon/js/templatemo.js"></script>
-    <script src="assets_sablon/js/custom.js"></script>
+    <script src="../assets_sablon/js/jquery-1.11.0.min.js"></script>
+    <script src="../assets_sablon/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../assets_sablon/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets_sablon/js/templatemo.js"></script>
+    <script src="../assets_sablon/js/custom.js"></script>
     <!-- End Script -->
 </body>
 

@@ -2,7 +2,7 @@
 session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include_once 'head.php';?>
+<?php include_once '../includes/head.php';?>
 
 
 
@@ -30,7 +30,7 @@ session_start(); ?>
 
 
     <!-- Header -->
-    <?php include 'header.php'; ?>
+    <?php include '../includes/header.php'; ?>
     <!-- Close Header -->
 
     <!-- Modal -->
@@ -64,7 +64,7 @@ session_start(); ?>
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <img src="assets_sablon/img/about-hero.svg" alt="About Hero">
+                    <img src="../assets_sablon/img/about-hero.svg" alt="About Hero">
                 </div>
             </div>
         </div>
@@ -146,16 +146,16 @@ session_start(); ?>
                                     <div class="carousel-item active">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_01.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_01.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_02.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_02.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_03.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_03.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_04.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_04.png" alt="Brand Logo"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -165,16 +165,16 @@ session_start(); ?>
                                     <div class="carousel-item">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_01.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_01.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_02.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_02.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_03.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_03.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_04.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_04.png" alt="Brand Logo"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -184,16 +184,16 @@ session_start(); ?>
                                     <div class="carousel-item">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_01.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_01.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_02.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_02.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_03.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_03.png" alt="Brand Logo"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets_sablon/img/brand_04.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets_sablon/img/brand_04.png" alt="Brand Logo"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -316,11 +316,11 @@ session_start(); ?>
     <!-- End Footer -->
 
     <!-- Start Script -->
-    <script src="assets_sablon/js/jquery-1.11.0.min.js"></script>
-    <script src="assets_sablon/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="assets_sablon/js/bootstrap.bundle.min.js"></script>
-    <script src="assets_sablon/js/templatemo.js"></script>
-    <script src="assets_sablon/js/custom.js"></script>
+    <script src="../assets_sablon/js/jquery-1.11.0.min.js"></script>
+    <script src="../assets_sablon/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../assets_sablon/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets_sablon/js/templatemo.js"></script>
+    <script src="../assets_sablon/js/custom.js"></script>
     <!-- End Script -->
 </body>
 
