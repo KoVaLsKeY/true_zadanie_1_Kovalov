@@ -1,0 +1,103 @@
+/* assets_sablon/css/vstup.css */
+
+/* Загальні стилі для тіла сторінки */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Сучасний, чистий шрифт */
+    background-color: #f4f7f6; /* Дуже світло-сірий фон */
+    color: #333; /* Темно-сірий текст для хорошої читабельності */
+    margin: 0;
+    display: flex; /* Використовуємо flexbox для центрування контенту */
+    justify-content: center; /* Центруємо по горизонталі */
+    align-items: center; /* Центруємо по вертикалі */
+    min-height: 100vh; /* Висота сторінки на всю висоту вікна перегляду */
+}
+
+/* Стилі для контейнера форми */
+form {
+    background-color: #ffffff; /* Білий фон форми */
+    padding: 30px; /* Відступи всередині форми */
+    border-radius: 10px; /* Злегка заокруглені кути */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* М'яка тінь для об'єму */
+    max-width: 400px; /* Максимальна ширина форми */
+    width: 90%; /* Адаптивна ширина для менших екранів */
+    box-sizing: border-box; /* Враховуємо padding в ширині */
+    text-align: center; /* Центруємо вміст форми (заголовки, кнопки) */
+}
+
+h2 {
+    color: #2c3e50; /* Темно-синій заголовок */
+    margin-bottom: 25px; /* Відступ під заголовком */
+    font-weight: 600; /* Трохи жирніший шрифт */
+    font-size: 2em; /* Більший розмір шрифту */
+    text-align: center; /* Центрування заголовка */
+}
+
+label {
+    display: block; /* Кожен label на новому рядку */
+    margin-bottom: 8px; /* Відступ під label */
+    color: #555; /* Трохи світліший колір для label */
+    font-weight: 500; /* Середня жирність шрифту */
+    text-align: left; /* Вирівнювання тексту label по лівому краю */
+}
+
+input[type="text"], /* Додано input[type="text"] для поля "Meno" */
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 20px); /* Повна ширина мінус padding */
+    padding: 12px 10px; /* Внутрішні відступи */
+    margin-bottom: 20px; /* Відступ під полем вводу */
+    border: 1px solid #ddd; /* Тонка світло-сіра рамка */
+    border-radius: 5px; /* Заокруглені кути */
+    font-size: 1em; /* Розмір шрифту */
+    box-sizing: border-box; /* Враховуємо padding в ширині */
+    transition: border-color 0.3s ease; /* Плавний перехід для рамки */
+}
+
+input[type="text"]:focus, /* Додано input[type="text"] для фокусу */
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff; /* Синя рамка при фокусі */
+    outline: none; /* Прибираємо стандартний outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* М'яка тінь при фокусі */
+}
+
+input[type="submit"] {
+    background-color: #007bff; /* Яскраво-синій колір кнопки */
+    color: white; /* Білий текст на кнопці */
+    padding: 12px 25px; /* Внутрішні відступи кнопки */
+    border: none; /* Без рамки */
+    border-radius: 5px; /* Заокруглені кути */
+    font-size: 1.1em; /* Більший шрифт кнопки */
+    cursor: pointer; /* Змінюємо курсор на палець */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Плавний перехід та трансформація */
+    width: 100%; /* Ширина кнопки 100% */
+    box-sizing: border-box;
+    margin-top: 10px; /* Відступ зверху */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Темніший синій при наведенні */
+    transform: translateY(-2px); /* Невеликий підйом кнопки */
+}
+
+input[type="submit"]:active {
+    transform: translateY(0); /* Повернення кнопки при натисканні */
+}
+
+p {
+    margin-top: 25px; /* Відступ зверху для параграфа */
+    font-size: 0.95em; /* Трохи менший шрифт */
+    color: #666; /* Сірий текст */
+    text-align: center;
+}
+
+a {
+    color: #007bff; /* Синій колір посилання */
+    text-decoration: none; /* Прибираємо підкреслення */
+    transition: color 0.3s ease; /* Плавний перехід кольору */
+}
+
+a:hover {
+    color: #0056b3; /* Темніший синій при наведенні */
+    text-decoration: underline; /* Підкреслення при наведенні */
+}

@@ -29,18 +29,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>Prihlásenie</title>
+    <link rel="stylesheet" href="../../assets_sablon/css/vstup.css">
 </head>
 <body>
-<h2 style="text-align:center;">Prihlásenie</h2>
-<form method="POST" style="max-width: 400px; margin: auto;">
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br><br>
+<form method="POST">
+    <h2>Prihlásenie</h2>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
 
-    <label>Heslo:</label><br>
-    <input type="password" name="heslo" required><br><br>
+    <label for="heslo">Heslo:</label><br>
+    <input type="password" id="heslo" name="heslo" required><br>
 
     <input type="submit" value="Prihlásiť sa">
+    <p><a href="register.php">Nemáš účet? Zaregistruj sa</a></p>
 </form>
-<p style="text-align:center;"><a href="register.php">Nemáš účet? Zaregistruj sa</a></p>
 </body>
 </html>

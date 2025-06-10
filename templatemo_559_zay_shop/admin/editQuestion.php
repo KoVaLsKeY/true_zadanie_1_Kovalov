@@ -9,11 +9,11 @@ use App\Auth\AuthClass;
 use App\Roles\AdminClass; // Використовуємо AdminClass для перевірки дозволу
 
 $auth = new AuthClass();
-$adminPermissions = new AdminClass($auth); // Ініціалізуємо AdminClass для перевірки дозволів адміна
+$adminPermissions = new AdminClass($auth);
 
 // Перевірка, чи користувач залогінений та має дозвіл на редагування питань
-if (!$auth->isLoggedIn() || !$adminPermissions->can('edit_questions')) {
-    header('Location: index.php'); // Перенаправлення на головну сторінку, якщо немає доступу
+if (!isset($_SESSION['user']) || ($_SESSION['user']['rola'] !== 'superadmin' && $_SESSION['user']['rola'] !== 'admin')) {
+    header('Location: ../includes/index.php'); // Перенаправлення на головну сторінку, якщо немає доступу
     exit;
 }
 

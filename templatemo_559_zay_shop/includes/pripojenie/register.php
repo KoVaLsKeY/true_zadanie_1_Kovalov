@@ -36,26 +36,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="../../assets_sablon/css/vstup.css">
     <title>Registrácia</title>
 </head>
 <body>
-<h2 style="text-align:center;">Registrácia</h2>
+<?php if (isset($sprava) && $sprava !== ''): ?>
+    <div class="message-box">
+        <?= $sprava ?>
+    </div>
+<?php endif; ?>
 
-<?= $sprava ?>
-
-<form method="POST" style="max-width: 400px; margin: auto;">
-    <label>Meno:</label><br>
-    <input type="text" name="meno" required><br><br>
-
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br><br>
-
-    <label>Heslo:</label><br>
-    <input type="password" name="heslo" required><br><br>
-
-    <input type="submit" value="Registrovať sa">
+<form method="POST">
+    <h2>Registrácia</h2> <label for="meno">Meno:</label><br>
+    <input type="text" id="meno" name="meno" required><br> <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br> <label for="heslo">Heslo:</label><br>
+    <input type="password" id="heslo" name="heslo" required><br> <input type="submit" value="Registrovať sa">
+    <p><a href="login.php">Už máš účet? Prihlás sa</a></p>
 </form>
-
-<p style="text-align:center;"><a href="login.php">Už máš účет? Prihlás sa</a></p>
 </body>
 </html>
