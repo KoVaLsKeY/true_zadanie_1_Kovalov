@@ -46,7 +46,7 @@
           </li>
 
           <!-- Пункт Admin Panel тільки для адміна -->
-          <?php if (isset($_SESSION['user']) && $_SESSION['user']['rola'] === 'admin')
+          <?php if (isset($_SESSION['user']) && ($_SESSION['user']['rola'] === 'admin' || $_SESSION['user']['rola'] === 'superadmin'))
 : ?>
             <li class="nav-item">
               <a class="nav-link" href="../admin/adminPanel.php" title="Admin Panel">
