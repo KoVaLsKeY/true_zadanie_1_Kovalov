@@ -20,22 +20,6 @@ $adminHandler = new AdminClass($auth);
 $superAdminHandler = new SuperAdminClass($auth);
 $permissions = new PermissionClass($auth); // Використовуємо його для getAllUsers()
 
-// --- ПОЧАТОК НАЛАГОДЖУВАЛЬНОГО ВИВОДУ ---
-echo '<pre>';
-echo '<h3>DEBUG INFO (allUsers.php)</h3>';
-echo 'Is Logged In: ' . var_export($auth->isLoggedIn(), true) . "\n";
-echo '$_SESSION[\'user\'] data: ' . var_export($_SESSION['user'] ?? 'Not set', true) . "\n";
-if (isset($_SESSION['user']['rola'])) {
-    echo 'Current User Role (from Session): ' . htmlspecialchars($_SESSION['user']['rola']) . "\n";
-} else {
-    echo 'Current User Role (from Session): Not set' . "\n";
-}
-echo 'Current User Role (from PermissionClass): ' . var_export($permissions->getUserRole(), true) . "\n";
-echo 'Can "make_user_admin" (SuperAdminHandler): ' . var_export($superAdminHandler->can('make_user_admin'), true) . "\n"; // ЦЕ ПОВИННО БУТИ TRUE
-echo 'Can "demote_admin" (SuperAdminHandler): ' . var_export($superAdminHandler->can('demote_admin'), true) . "\n";
-echo 'Can "delete_users" (SuperAdminHandler): ' . var_export($superAdminHandler->can('delete_users'), true) . "\n";
-echo '</pre>';
-// --- КІНЕЦЬ НАЛАГОДЖУВАЛЬНОГО ВИВОДУ ---
 
 if (!$auth->isLoggedIn() || !$permissions->hasRole(['admin', 'superadmin'])) {
     header('Location: ../index.php');

@@ -135,7 +135,7 @@ session_start(); ?>
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Categories of The Month</h1>
+                <h1 class="h1"> <?php echo greet()?> Let us intruduce categories of The Month</h1>
                 <p>
                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                     deserunt mollit anim id est laborum.
@@ -247,7 +247,6 @@ session_start(); ?>
                             <p class="text-muted">Reviews (74)</p>
                         </div>
                     </div>
-                    <?php echo greet()?>
                 </div>
             </div>
         </div>

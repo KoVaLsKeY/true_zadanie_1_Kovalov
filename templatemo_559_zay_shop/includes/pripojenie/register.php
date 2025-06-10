@@ -36,10 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../../assets_sablon/css/vstup.css">
-    <title>Registrácia</title>
+<title>Prihlásenie</title>
+<link rel="stylesheet" href="../../assets_sablon/css/vstup.css">
+<link rel="stylesheet" href="../../assets_sablon/css/backButton.css">
 </head>
 <body>
+<a href="../../stranky/index.php" class="back-button">← Späť na stránku</a>
+
 <?php if (isset($sprava) && $sprava !== ''): ?>
     <div class="message-box">
         <?= $sprava ?>
