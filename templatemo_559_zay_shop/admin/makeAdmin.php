@@ -1,29 +1,29 @@
 <?php
 session_start();
 
-// Увімкнути повне відображення помилок для налагодження
+// Zapnúť úplné zobrazenie chýb pre ladenie
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Підключення необхідних класів
+// Pripojenie potrebných tried
 require_once '../classes/AuthClass.php';
 require_once '../classes/PermissionClass.php';
 require_once '../classes/AdminClass.php';
 require_once '../classes/SuperAdminClass.php';
 
-// Використання правильних namespace
+// Použitie správnych menných priestorov
 use App\Auth\AuthClass;
 use App\Roles\AdminClass;
 use App\Roles\SuperAdminClass;
-use App\Permissions\PermissionClass; // Переконайтесь, що цей use є
+use App\Permissions\PermissionClass; // Uistite sa, že toto "use" existuje
 
-// Створення екземплярів класів
+// Vytvorenie inštancií tried
 $auth = new AuthClass();
 $adminHandler = new AdminClass($auth);
 $superAdminHandler = new SuperAdminClass($auth);
-$permissions = new PermissionClass($auth); // Загальний клас для перевірки дозволів
+$permissions = new PermissionClass($auth); // Všeobecná trieda pre kontrolu povolení
 
-// --- ПОЧАТОК НАЛАГОДЖУВАЛЬНОГО ВИВОДУ ---
+// --- ZAČIATOK VÝSTUPU NA LADENIE ---
 echo '<pre>';
 echo '<h3>DEBUG INFO (makeAdmin.php)</h3>';
 echo 'Is Logged In: ' . var_export($auth->isLoggedIn(), true) . "\n";
@@ -33,41 +33,41 @@ if (isset($_SESSION['user']['rola'])) {
 } else {
     echo 'Current User Role (from Session): Not set' . "\n";
 }
-echo 'Current User Role (from PermissionClass): ' . var_export($permissions->getUserRole(), true) . "\n"; // Потрібен getUserRole() в PermissionClass
+echo 'Current User Role (from PermissionClass): ' . var_export($permissions->getUserRole(), true) . "\n"; // Potrebné getUserRole() v PermissionClass
 echo 'Can "make_user_admin" (AdminHandler): ' . var_export($adminHandler->can('make_user_admin'), true) . "\n";
 echo 'Can "make_user_superadmin" (SuperAdminHandler): ' . var_export($superAdminHandler->can('make_user_superadmin'), true) . "\n";
 echo 'Can "demote_admin" (SuperAdminHandler): ' . var_export($superAdminHandler->can('demote_admin'), true) . "\n";
 echo 'Can "delete_users" (SuperAdminHandler): ' . var_export($superAdminHandler->can('delete_users'), true) . "\n";
 echo '</pre>';
-// --- КІНЕЦЬ НАЛАГОДЖУВАЛЬНОГО ВИВОДУ ---
+// --- KONIEC VÝSTUPU NA LADENIE ---
 
 
-// Перевірка доступу: тільки адміністратор або супер-адміністратор можуть переглядати цю сторінку
+// Kontrola prístupu: iba administrátor alebo super-administrátor môžu prezerať túto stránku
 if (!$auth->isLoggedIn() || !$permissions->hasRole(['admin', 'superadmin'])) {
-    header('Location: ../stranky/index.php'); // Перенаправлення на головну сторінку, якщо немає прав
+    header('Location: ../stranky/index.php'); // Presmerovanie na hlavnú stránku, ak nie sú oprávnenia
     exit;
 }
 
-$message = ''; // Змінна для зберігання повідомлень користувачу
+$message = ''; // Premenná na ukladanie správ pre používateľa
 
-// Обробка POST-запитів (коли натискається кнопка)
+// Spracovanie POST požiadaviek (keď je stlačené tlačidlo)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userId = $_POST['user_id'] ?? null;
     $action = $_POST['action'] ?? null;
 
     if ($userId && $action) {
-        // Перевірка дій та відповідних дозволів
+        // Kontrola akcií a príslušných povolení
         switch ($action) {
             case 'make_admin':
                 if ($adminHandler->can('make_user_admin')) {
                     $result = $adminHandler->makeUserAdmin($userId);
                     if ($result === true) {
-                        $message = "Користувача ID: {$userId} успішно зроблено адміністратором.";
+                        $message = "Používateľ ID: {$userId} úspešne bol nastavený ako administrátor.";
                     } else {
-                        $message = "Помилка: " . $result;
+                        $message = "Chyba: " . $result;
                     }
                 } else {
-                    $message = "Помилка: Недостатньо прав для призначення адміністраторів.";
+                    $message = "Chyba: Nedostatočné oprávnenia na pridelenie administrátorov.";
                 }
                 break;
 
@@ -75,54 +75,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($superAdminHandler->can('make_user_superadmin')) {
                     $result = $superAdminHandler->makeUserSuperAdmin($userId);
                     if ($result === true) {
-                        $message = "Користувача ID: {$userId} успішно зроблено супер-адміністратором.";
+                        $message = "Používateľ ID: {$userId} úspešne bol nastavený ako super-administrátor.";
                     } else {
-                        $message = "Помилка: " . $result;
+                        $message = "Chyba: " . $result;
                     }
                 } else {
-                    $message = "Помилка: Недостатньо прав для призначення супер-адміністраторів.";
+                    $message = "Chyba: Nedostatočné oprávnenia na pridelenie super-administrátorov.";
                 }
                 break;
 
             case 'demote_admin':
-                // Тільки супер-адмін може понижувати інших адміністраторів
+                // Iba super-administrátor môže degradovať iných administrátorov
                 if ($superAdminHandler->can('demote_admin')) {
                     $result = $superAdminHandler->demoteAdmin($userId);
                     if ($result === true) {
-                        $message = "Користувача ID: {$userId} успішно понижено до 'user'.";
+                        $message = "Používateľ ID: {$userId} úspešne bol degradovaný na 'user'.";
                     } else {
-                        $message = "Помилка: " . $result;
+                        $message = "Chyba: " . $result;
                     }
                 } else {
-                    $message = "Помилка: Недостатньо прав для пониження адміністраторів.";
+                    $message = "Chyba: Nedostatočné oprávnenia na degradáciu administrátorov.";
                 }
                 break;
 
             case 'delete_user':
-                // Тільки супер-адмін може видаляти користувачів
+                // Iba super-administrátor môže mazať používateľov
                 if ($superAdminHandler->can('delete_users')) {
                     $result = $superAdminHandler->deleteUser($userId);
                     if ($result === true) {
-                        $message = "Користувача ID: {$userId} успішно видалено.";
+                        $message = "Používateľ ID: {$userId} úspešne odstránený.";
                     } else {
-                        $message = "Помилка: " . $result;
+                        $message = "Chyba: " . $result;
                     }
                 } else {
-                    $message = "Помилка: Недостатньо прав для видалення користувачів.";
+                    $message = "Chyba: Nedostatočné oprávnenia na odstránenie používateľov.";
                 }
                 break;
 
             default:
-                $message = "Невідома дія.";
+                $message = "Neznáma akcia.";
                 break;
         }
     } else {
-        $message = "Недійсний запит.";
+        $message = "Neplatná požiadavka.";
     }
 }
 
-// Отримання всіх користувачів для відображення в таблиці
-$allUsers = $adminHandler->getAllUsers(); // Цей метод має бути доступний через PermissionClass (або AdminClass)
+// Získanie všetkých používateľov na zobrazenie v tabuľke
+$allUsers = $adminHandler->getAllUsers(); // Táto metóda by mala byť dostupná cez PermissionClass (alebo AdminClass)
 ?>
 
 <!DOCTYPE html>
@@ -139,7 +139,7 @@ $allUsers = $adminHandler->getAllUsers(); // Цей метод має бути �
     </style>
 </head>
 <body class="container mt-5">
-<h2>Správa používateľів</h2>
+<h2>Správa používateľov</h2>
 
 <?php if ($message): ?>
     <div class="alert alert-info"><?= htmlspecialchars($message) ?></div>
@@ -152,7 +152,7 @@ $allUsers = $adminHandler->getAllUsers(); // Цей метод має бути �
         <th>Meno</th>
         <th>Email</th>
         <th>Rola</th>
-        <th>Акції</th>
+        <th>Akcie</th>
     </tr>
     </thead>
     <tbody>
@@ -165,8 +165,8 @@ $allUsers = $adminHandler->getAllUsers(); // Цей метод має бути �
                 <td><?= htmlspecialchars($user['rola']) ?></td>
                 <td class="table-actions">
                     <?php
-                    // --- Кнопка "Urobiť Adminom" ---
-                    // Доступна адміну або супер-адміну, якщо користувач не є адміном чи супер-адміном
+                    // --- Tlačidlo "Urobiť Adminom" ---
+                    // Dostupné pre administrátora alebo super-administrátora, ak užívateľ nie je administrátor alebo super-administrátor
                     if ($adminHandler->can('make_user_admin') && $user['rola'] !== 'admin' && $user['rola'] !== 'superadmin'): ?>
                         <form method="post">
                             <input type="hidden" name="user_id" value="<?= $user['id_user'] ?>">
@@ -176,11 +176,11 @@ $allUsers = $adminHandler->getAllUsers(); // Цей метод має бути �
                     <?php endif; ?>
 
                     <?php
-                    // --- Дії, доступні тільки супер-адміну ---
-                    // Перевіряємо, чи поточний користувач має дозвіл на пониження адмінів (що дає тільки супер-адмін)
-                    if ($superAdminHandler->can('demote_admin')) { // <-- Достатньо перевірити один дозвіл для супер-адмінських дій
-                        // Кнопка "Ponižiť Admina"
-                        // Дозволено понижувати тільки тих, хто є 'admin', і не самого себе
+                    // --- Akcie dostupné iba super-administrátorovi ---
+                    // Skontrolujeme, či má aktuálny užívateľ povolenie na degradáciu administrátorov (ktoré poskytuje iba super-administrátor)
+                    if ($superAdminHandler->can('demote_admin')) { // <-- Postačuje skontrolovať jedno povolenie pre akcie super-administrátora
+                        // Tlačidlo "Degradovať administrátora"
+                        // Povolené je degradovať iba tých, ktorí sú 'admin', a nie seba
                         if ($user['rola'] === 'admin' && $user['id_user'] !== ($_SESSION['user']['id'] ?? null)) {
                             echo '<form method="post">';
                             echo '<input type="hidden" name="user_id" value="' . $user['id_user'] . '">';
@@ -189,8 +189,8 @@ $allUsers = $adminHandler->getAllUsers(); // Цей метод має бути �
                             echo '</form>';
                         }
 
-                        // Кнопка "Urobiť SuperAdminom"
-                        // Дозволено робити супер-адміном, якщо користувач не є супер-адміном і не є поточним користувачем
+                        // Tlačidlo "Urobiť SuperAdminom"
+                        // Povolené je urobiť super-administrátorom, ak užívateľ nie je super-administrátor a nie je aktuálnym užívateľom
                         if ($user['rola'] !== 'superadmin' && $user['id_user'] !== ($_SESSION['user']['id'] ?? null) && $superAdminHandler->can('make_user_superadmin')) {
                             echo '<form method="post">';
                             echo '<input type="hidden" name="user_id" value="' . $user['id_user'] . '">';
@@ -199,8 +199,8 @@ $allUsers = $adminHandler->getAllUsers(); // Цей метод має бути �
                             echo '</form>';
                         }
 
-                        // Кнопка "Vymazať"
-                        // Дозволено видаляти, якщо користувач не є поточним користувачем і має дозвіл delete_users
+                        // Tlačidlo "Vymazať"
+                        // Povolené je mazať, ak užívateľ nie je aktuálnym užívateľom a má povolenie delete_users
                         if ($superAdminHandler->can('delete_users') && $user['id_user'] !== ($_SESSION['user']['id'] ?? null)) {
                             echo '<form method="post" onsubmit="return confirm(\'Ste si istí, že chcete odstrániť tohto používateľa?\');">';
                             echo '<input type="hidden" name="user_id" value="' . $user['id_user'] . '">';

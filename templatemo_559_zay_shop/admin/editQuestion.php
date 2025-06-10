@@ -6,14 +6,14 @@ require_once '../classes/PermissionClass.php';
 require_once '../classes/AdminClass.php';
 
 use App\Auth\AuthClass;
-use App\Roles\AdminClass; // Використовуємо AdminClass для перевірки дозволу
+use App\Roles\AdminClass; // Používame AdminClass na kontrolu povolenia
 
 $auth = new AuthClass();
 $adminPermissions = new AdminClass($auth);
 
-// Перевірка, чи користувач залогінений та має дозвіл на редагування питань
+// Kontrola, či je užívateľ prihlásený a má povolenie na úpravu otázok
 if (!isset($_SESSION['user']) || ($_SESSION['user']['rola'] !== 'superadmin' && $_SESSION['user']['rola'] !== 'admin')) {
-    header('Location: ../includes/index.php'); // Перенаправлення на головну сторінку, якщо немає доступу
+    header('Location: ../stranky/index.php'); // Presmerovanie na hlavnú stránku, ak nie je prístup
     exit;
 }
 
@@ -34,7 +34,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 
 $id = (int) $_GET['id'];
 
-// Якщо надіслано форму
+// Ak bol formulár odoslaný
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $question = trim($_POST['sprava']);
     $answer = trim($_POST['odpoved']);
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// Завантаження існуючого питання
+// Načítanie existujúcej otázky
 $stmt = $pdo->prepare("SELECT sprava, odpoved FROM udaje WHERE id_otazky = ?");
 $stmt->execute([$id]);
 $questionData = $stmt->fetch(PDO::FETCH_ASSOC);

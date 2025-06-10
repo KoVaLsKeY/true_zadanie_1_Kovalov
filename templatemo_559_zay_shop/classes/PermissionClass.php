@@ -1,29 +1,29 @@
 <?php
 namespace App\Permissions;
-// ... інші use
-use App\Auth\AuthClass; // Не забудьте підключити AuthClass
-use PDO; // Для PDO
+// ... ostatné use
+use App\Auth\AuthClass; // Nezabudnite pripojiť AuthClass
+use PDO; // Pre PDO
 
 class PermissionClass {
     protected $authClass;
     protected $userRole;
-    protected $conn; // З'єднання з БД
+    protected $conn; // Pripojenie k DB
 
     public function __construct(AuthClass $authClass) {
         $this->authClass = $authClass;
         $loggedUser = $this->authClass->getLoggedUser();
-        $this->userRole = $loggedUser['rola'] ?? 'guest'; // Встановлюємо роль або 'guest' за замовчуванням
+        $this->userRole = $loggedUser['rola'] ?? 'guest'; // Nastavíme rolu alebo 'guest' predvolene
 
-        // Перевірте, що AuthClass має метод getConnection()
-        // або передайте PDO з'єднання іншим способом.
-        // Припускаємо, що AuthClass має доступ до $conn
+        // Skontrolujte, či AuthClass má metódu getConnection()
+        // alebo odovzdajte PDO pripojenie iným spôsobom.
+        // Predpokladáme, že AuthClass má prístup k $conn
         $this->conn = $this->authClass->getConnection();
     }
 
     /**
-     * Перевіряє, чи має поточний користувач необхідну роль.
-     * @param string|array $requiredRoles Одна роль або масив ролей, які необхідні для доступу.
-     * @return bool True, якщо користувач має одну з необхідних ролей, false в іншому випадку.
+     * Kontroluje, či má aktuálny užívateľ potrebnú rolu.
+     * @param string|array $requiredRoles Jedna rola alebo pole rolí, ktoré sú potrebné pre prístup.
+     * @return bool True, ak má užívateľ jednu z potrebných rolí, false inak.
      */
     public function hasRole($requiredRoles) {
         if (empty($this->userRole)) {
@@ -38,23 +38,23 @@ class PermissionClass {
     }
 
     /**
-     * Приклад перевірки конкретного дозволу.
-     * Цей метод можна розширити для більш гранульованих дозволів.
-     * @param string $permission Назва дозволу (наприклад, 'edit_posts', 'delete_users').
-     * @return bool True, якщо користувач має дозвіл, false в іншому випадку.
+     * Príklad kontroly konkrétneho povolenia.
+     * Túto metódu je možné rozšíriť pre podrobnejšie povolenia.
+     * @param string $permission Názov povolenia (napríklad 'edit_posts', 'delete_users').
+     * @return bool True, ak má užívateľ povolenie, false inak.
      */
     public function can($permission) {
-        // Базова логіка дозволів для звичайного користувача
+        // Základná logika povolení pre bežného užívateľa
         switch ($this->userRole) {
             case 'user':
-                return in_array($permission, ['view_own_posts']); // Звичайний користувач може лише переглядати свої пости
+                return in_array($permission, ['view_own_posts']); // Bežný užívateľ môže iba prezerať svoje príspevky
             default:
                 return false;
         }
     }
 
     /**
-     * Перевіряє, чи є поточний користувач адміністратором.
+     * Kontroluje, či je aktuálny užívateľ administrátorom.
      * @return bool
      */
     public function isAdmin() {
@@ -62,41 +62,41 @@ class PermissionClass {
     }
 
     /**
-     * Перевіряє, чи є поточний користувач супер-адміністратором.
+     * Kontroluje, či je aktuálny užívateľ super-administrátorom.
      * @return bool
      */
     public function isSuperAdmin() {
         return $this->userRole === 'superadmin';
     }
 
-    // Методи для керування користувачами, які можуть бути розширені
+    // Metódy na správu užívateľov, ktoré je možné rozšíriť
     public function getAllUsers() {
         if (!$this->conn) {
-            // Обробка помилки: з'єднання з базою даних відсутнє
-            error_log("Помилка: З'єднання з базою даних не встановлено в PermissionClass.");
+            // Spracovanie chyby: pripojenie k databáze chýba
+            error_log("Chyba: Pripojenie k databáze nebolo nastavené v PermissionClass.");
             return [];
         }
         try {
             $stmt = $this->conn->query("SELECT id_user, meno, email, rola FROM users");
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            error_log("Помилка БД при отриманні користувачів: " . $e->getMessage());
+            error_log("Chyba DB pri získavaní užívateľov: " . $e->getMessage());
             return [];
         }
     }
 
-    // Цей метод буде перевизначений в AdminClass та SuperAdminClass
+    // Táto metóda bude predefinovaná v AdminClass a SuperAdminClass
     public function makeUserAdmin($userId) {
-        return "Недостатньо прав для виконання цієї дії.";
+        return "Nedostatočné oprávnenia na vykonanie tejto akcie.";
     }
 
-    // Ці методи будуть додані в SuperAdminClass
+    // Tieto metódy budú pridané do SuperAdminClass
     public function deleteUser($userId) {
-        return "Недостатньо прав для виконання цієї дії.";
+        return "Nedostatočné oprávnenia na vykonanie tejto akcie.";
     }
 
     public function deleteQuestion($questionId) {
-        return "Недостатньо прав для виконання цієї дії.";
+        return "Nedostatočné oprávnenia na vykonanie tejto akcie.";
     }
     public function getUserRole() {
         return $this->userRole;

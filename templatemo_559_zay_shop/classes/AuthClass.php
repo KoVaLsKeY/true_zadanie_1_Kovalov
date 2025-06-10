@@ -1,7 +1,7 @@
 <?php
-namespace App\Auth; // <-- ПЕРЕКОНАЙТЕСЯ, ЩО ЦЕЙ NAMESPACE ВСТАНОВЛЕНО ПРАВИЛЬНО!
+namespace App\Auth; // <-- UISTITE SA, ŽE TENTO NÁZVOVÝ PRIESTOR JE NASTAVENÝ SPRÁVNE!
 
-// Підключення до конфігурації бази даних
+// Pripojenie k databázovej konfigurácii
 require_once(__DIR__ . '/../db/dbConfig.php');
 
 use PDO;
@@ -32,12 +32,12 @@ class AuthClass {
     }
 
     /**
-     * Реєструє нового користувача в системі.
-     * @param string $meno Ім'я користувача.
-     * @param string $email Email користувача (унікальний).
-     * @param string $heslo Пароль користувача.
-     * @param string $rola Початкова роль користувача (за замовчуванням 'user').
-     * @return string|true Повідомлення про помилку або true у разі успішної реєстрації.
+     * Registruje nového užívateľa v systéme.
+     * @param string $meno Meno užívateľa.
+     * @param string $email Email užívateľa (jedinečný).
+     * @param string $heslo Heslo užívateľa.
+     * @param string $rola Počiatočná rola užívateľa (predvolene 'user').
+     * @return string|true Správa o chybe alebo true v prípade úspešnej registrácie.
      */
     public function register($meno, $email, $heslo, $rola = 'user') {
         $check = $this->conn->prepare("SELECT 1 FROM users WHERE email = ?");
@@ -67,10 +67,10 @@ class AuthClass {
     }
 
     /**
-     * Перевіряє облікові дані користувача та здійснює вхід.
-     * @param string $email Email користувача.
-     * @param string $heslo Пароль користувача.
-     * @return bool True у разі успішного входу, false в іншому випадку.
+     * Kontroluje prihlasovacie údaje užívateľa a vykonáva prihlásenie.
+     * @param string $email Email užívateľa.
+     * @param string $heslo Heslo užívateľa.
+     * @return bool True v prípade úspešného prihlásenia, false inak.
      */
     public function login($email, $heslo) {
         $sql = "SELECT id_user, meno, email, heslo, rola FROM users WHERE email = ?";
@@ -94,7 +94,7 @@ class AuthClass {
     }
 
     /**
-     * Вихід користувача з системи.
+     * Odhlásenie užívateľa zo systému.
      */
     public function logout() {
         if (session_status() == PHP_SESSION_NONE) {
@@ -105,8 +105,8 @@ class AuthClass {
     }
 
     /**
-     * Перевіряє, чи користувач залогінений.
-     * @return bool True, якщо користувач залогінений, false в іншому випадку.
+     * Kontroluje, či je užívateľ prihlásený.
+     * @return bool True, ak je užívateľ prihlásený, false inak.
      */
     public function isLoggedIn() {
         if (session_status() == PHP_SESSION_NONE) {
@@ -116,8 +116,8 @@ class AuthClass {
     }
 
     /**
-     * Повертає дані залогіненого користувача.
-     * @return array|null Дані користувача або null, якщо не залогінений.
+     * Vracia údaje prihláseného užívateľa.
+     * @return array|null Údaje užívateľa alebo null, ak nie je prihlásený.
      */
     public function getLoggedUser() {
         if (session_status() == PHP_SESSION_NONE) {
@@ -127,10 +127,10 @@ class AuthClass {
     }
 
     /**
-     * Метод для отримання з'єднання з базою даних.
-     * Цей метод є необхідним для PermissionClass та інших класів,
-     * яким потрібен доступ до БД через AuthClass.
-     * @return PDO Об'єкт PDO-з'єднання.
+     * Metóda na získanie pripojenia k databáze.
+     * Táto metóda je potrebná pre triedu PermissionClass a iné triedy,
+     * ktoré potrebujú prístup k DB cez AuthClass.
+     * @return PDO Objekt PDO pripojenia.
      */
     public function getConnection() {
         return $this->conn;

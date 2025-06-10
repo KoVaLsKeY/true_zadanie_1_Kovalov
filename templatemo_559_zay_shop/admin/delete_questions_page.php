@@ -10,7 +10,7 @@ use App\Roles\SuperAdminClass;
 $auth = new AuthClass();
 $superAdminHandler = new SuperAdminClass($auth);
 
-// Перевірка доступу: тільки супер-адмін може видаляти питання
+// Kontrola prístupu: iba super-administrátor môže mazať otázky
 if (!$auth->isLoggedIn() || !$superAdminHandler->can('delete_questions')) {
     header('Location: ../stranky/index.php');
     exit;
@@ -22,14 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['question_id'])) {
     $questionId = (int)$_POST['question_id'];
     $result = $superAdminHandler->deleteQuestion($questionId);
     if ($result === true) {
-        $message = "Питання ID: {$questionId} успішно видалено.";
+        $message = "Otázka ID: {$questionId} úspešne odstránená.";
     } else {
-        $message = "Помилка: " . $result;
+        $message = "Chyba: " . $result;
     }
 }
 
-// Отримання всіх питань для відображення (можна додати метод в AdminClass/PermissionClass для цього)
-// Для спрощення поки використаємо пряме підключення до БД
+// Získanie všetkých otázok na zobrazenie (možno pridať metódu do AdminClass/PermissionClass pre toto)
+// Pre zjednodušenie zatiaľ použijeme priame pripojenie k DB
 require_once '../db/dbConfig.php';
 $db = DATABASE;
 

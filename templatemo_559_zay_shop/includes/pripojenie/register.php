@@ -1,16 +1,16 @@
 <?php
 session_start();
 
-// Правильний шлях до AuthClass.php (з тієї ж папки, що й login.php)
+// Správna cesta k AuthClass.php (z rovnakého priečinka ako login.php)
 require_once(__DIR__ . '/../../classes/AuthClass.php');
 
-// Використовуємо запропонований namespace для AuthClass
+// Používame navrhnutý menný priestor pre AuthClass
 use App\Auth\AuthClass;
 
-// Створюємо екземпляр AuthClass
+// Vytvoríme inštanciu AuthClass
 $auth = new AuthClass();
 
-$sprava = ""; // Для повідомлення
+$sprava = ""; // Pre správu
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $meno = $_POST['meno'] ?? '';
@@ -18,13 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $heslo = $_POST['heslo'] ?? '';
 
     if (!empty($meno) && !empty($email) && !empty($heslo)) {
-        // Метод register тепер приймає необов'язковий аргумент $rola, за замовчуванням 'user'
-        $vysledok = $auth->register($meno, $email, $heslo); // Використовуємо об'єкт $auth
+        // Metóda register teraz akceptuje nepovinný argument $rola, predvolene 'user'
+        $vysledok = $auth->register($meno, $email, $heslo); // Používame objekt $auth
 
         if ($vysledok === true) {
-            $sprava = "<p style='color:green;text-align:center;'>Registrácia úspešná! <a href='login.php'>Prihlásiť sa</a></p>"; // Шлях до login.php
+            $sprava = "<p style='color:green;text-align:center;'>Registrácia úspešná! <a href='login.php'>Prihlásiť sa</a></p>"; // Cesta k login.php
         } else {
-            // htmlspecialchars захищає від XSS
+            // htmlspecialchars chráni pred XSS
             $sprava = "<p style='color:red;text-align:center;'>" . htmlspecialchars($vysledok) . "</p>";
         }
     } else {
@@ -36,9 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
-<title>Prihlásenie</title>
-<link rel="stylesheet" href="../../assets_sablon/css/vstup.css">
-<link rel="stylesheet" href="../../assets_sablon/css/backButton.css">
+    <title>Prihlásenie</title>
+    <link rel="stylesheet" href="../../assets_sablon/css/vstup.css">
+    <link rel="stylesheet" href="../../assets_sablon/css/backButton.css">
 </head>
 <body>
 <a href="../../stranky/index.php" class="back-button">← Späť na stránku</a>

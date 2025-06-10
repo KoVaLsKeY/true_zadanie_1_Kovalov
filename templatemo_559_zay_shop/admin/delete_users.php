@@ -10,7 +10,7 @@ use App\Roles\SuperAdminClass;
 $auth = new AuthClass();
 $superAdminHandler = new SuperAdminClass($auth);
 
-// Перевірка доступу: тільки супер-адмін може видаляти користувачів
+// Kontrola prístupu: iba super-administrátor môže mazať používateľov
 if (!$auth->isLoggedIn() || !$superAdminHandler->can('delete_users')) {
     header('Location: ../stranky/index.php');
     exit;
@@ -22,14 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_user'])) {
     $userId = (int)$_POST['id_user'];
     $result = $superAdminHandler->deleteUser($userId);
     if ($result === true) {
-        $message = "Користувач ID: {$userId} успішно видалений.";
+        $message = "Používateľ ID: {$userId} úspešne odstránený.";
     } else {
-        $message = "Помилка: " . $result;
+        $message = "Chyba: " . $result;
     }
 }
 
-// Отримання всіх користувачів для відображення
-$allUsers = $superAdminHandler->getAllUsers(); // Метод з PermissionClass
+// Získanie všetkých používateľov na zobrazenie
+$allUsers = $superAdminHandler->getAllUsers(); // Metóda z PermissionClass
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +64,7 @@ $allUsers = $superAdminHandler->getAllUsers(); // Метод з PermissionClass
                 <td><?= htmlspecialchars($user['email']) ?></td>
                 <td><?= htmlspecialchars($user['rola']) ?></td>
                 <td>
-                    <?php if ($user['id_user'] !== $_SESSION['user']['id']): // Не дозволяємо видаляти самого себе ?>
+                    <?php if ($user['id_user'] !== $_SESSION['user']['id']): // Nedovoľujeme mazať samého seba ?>
                         <form method="post" onsubmit="return confirm('Ste si istí, že chcete odstrániť tohto používateľa?');">
                             <input type="hidden" name="user_id" value="<?= $user['id_user'] ?>">
                             <button type="submit" class="btn btn-sm btn-danger">Vymazať</button>

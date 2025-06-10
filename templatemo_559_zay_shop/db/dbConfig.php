@@ -6,4 +6,3 @@ define('DATABASE', [
 'USER_NAME' => 'root',
 'PASSWORD' => ''
 ]);
-//asdfasdfasdf

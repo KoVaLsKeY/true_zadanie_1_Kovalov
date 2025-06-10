@@ -2,7 +2,7 @@
 require_once('../classes/contactClass.php');
 use formular\ContactClass;
 
-// Виводимо стилі inline
+// Vypíšeme štýly inline
 echo <<<HTML
 <style>
   .faq-container {
@@ -39,24 +39,24 @@ echo <<<HTML
 </style>
 HTML;
 
-// Отримуємо дані
+// Získame dáta
 $kontakt = new ContactClass();
 $otazky = $kontakt->getOtazkyZUdaje();
 
-// Виводимо FAQ
+// Vypíšeme FAQ
 echo '<div class="faq-container">';
 echo '<div class="container-name">';
-echo '<h1> FAQ by our users </h1> </div>';
+echo '<h1> FAQ od našich používateľov </h1> </div>';
 foreach ($otazky as $zaznam) {
     echo '<div class="faq-item">';
-      echo '<div class="faq-question">';
-        echo '<h4>' . htmlspecialchars($zaznam['sprava']) . '</h4>';
-      echo '</div>';
-      echo '<div class="faq-answer">';
-        echo '<p><strong>Meno:</strong> ' . htmlspecialchars($zaznam['meno']) . '</p>';
-        echo '<p><strong>Objekt:</strong> ' . htmlspecialchars($zaznam['objekt']) . '</p>';
-        echo '<h5><strong>Odpoveď:</strong> ' . htmlspecialchars($zaznam['odpoved']) . '</h5>';
-      echo '</div>';
+    echo '<div class="faq-question">';
+    echo '<h4>' . htmlspecialchars($zaznam['sprava']) . '</h4>';
+    echo '</div>';
+    echo '<div class="faq-answer">';
+    echo '<p><strong>Meno:</strong> ' . htmlspecialchars($zaznam['meno']) . '</p>';
+    echo '<p><strong>Predmet:</strong> ' . htmlspecialchars($zaznam['objekt']) . '</p>';
+    echo '<h5><strong>Odpoveď:</strong> ' . htmlspecialchars($zaznam['odpoved']) . '</h5>';
+    echo '</div>';
     echo '</div>';
 }
 echo '</div>';

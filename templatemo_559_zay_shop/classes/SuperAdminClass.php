@@ -12,111 +12,111 @@ class SuperAdminClass extends AdminClass {
 
     public function can($permission) {
         if ($this->userRole === 'superadmin') {
-            // Ця умова потрібна, щоб уникнути ситуації,
-            // коли superadmin міг би програмно створити іншого superadmin,
-            // якщо ви все ще маєте makeUserSuperAdmin() метод десь.
-            // Якщо методу makeUserSuperAdmin() взагалі НЕ ІСНУЄ,
-            // тоді цей if-блок не є критичним для функціоналу,
-            // але є хорошим для чіткості дозволів.
+            // Táto podmienka je potrebná, aby sa predišlo situácii,
+            // keď by super-administrátor mohol programovo vytvoriť iného super-administrátora,
+            // ak by ste ešte stále mali metódu makeUserSuperAdmin() niekde.
+            // Ak metóda makeUserSuperAdmin() VÔBEC NEEXISTUJE,
+            // potom tento if-blok nie je pre funkčnosť kritický,
+            // ale je dobrý pre jasnosť povolení.
             if ($permission === 'make_user_superadmin') {
                 return false;
             }
-            return true; // Супер-адмін має всі інші дозволи (включаючи make_user_admin, demote_admin, delete_users)
+            return true; // Super-administrátor má všetky ostatné povolenia (vrátane make_user_admin, demote_admin, delete_users)
         }
-        return parent::can($permission); // Передаємо в AdminClass
+        return parent::can($permission); // Odovzdáme AdminClass
     }
     public function makeUserAdmin($userId) {
-        // Перевірка дозволу за допомогою can() СУПЕР-АДМІНА
+        // Kontrola povolenia pomocou can() SUPER-ADMINISTRÁTORA
         if (!$this->can('make_user_admin')) {
-            return "Недостатньо прав для виконання цієї дії.";
+            return "Nedostatočné oprávnenia na vykonanie tejto akcie.";
         }
 
-        // Перевіряємо, чи існує користувач і його поточна роль
+        // Kontrola, či užívateľ existuje a aká je jeho aktuálna rola
         $stmt = $this->conn->prepare("SELECT rola FROM users WHERE id_user = ?");
         $stmt->execute([$userId]);
         $user = $stmt->fetch();
 
         if (!$user) {
-            return "Користувача з таким ID не знайдено.";
+            return "Používateľ s takýmto ID nebol nájdený.";
         }
 
         if ($user['rola'] === 'admin' || $user['rola'] === 'superadmin') {
-            return "Цей користувач вже є адміністратором або супер-адміністратором.";
+            return "Tento používateľ je už administrátorom alebo super-administrátorom.";
         }
 
         try {
             $stmt = $this->conn->prepare("UPDATE users SET rola = 'admin' WHERE id_user = ?");
             $stmt->execute([$userId]);
             return true;
-        } catch (\PDOException $e) { // Змінено на \PDOException для глобального namespace
-            return "Помилка при зміні ролі: " . $e->getMessage();
+        } catch (\PDOException $e) { // Zmenené na \PDOException pre globálny menný priestor
+            return "Chyba pri zmene roly: " . $e->getMessage();
         }
     }
     /**
-     * Метод для пониження ролі адміністратора до 'user'.
-     * Цей метод має бути доступний лише супер-адміну.
-     * @param int $userId ID користувача, якого потрібно понизити.
-     * @return bool|string True у разі успіху, повідомлення про помилку в іншому випадку.
+     * Metóda na degradáciu roly administrátora na 'user'.
+     * Táto metóda by mala byť dostupná iba super-administrátorovi.
+     * @param int $userId ID užívateľa, ktorého je potrebné degradovať.
+     * @return bool|string True v prípade úspechu, inak chybová správa.
      */
-    public function demoteAdmin(int $userId) { // Залишаємо це оголошення
-        // Перевіряємо, чи поточний користувач є супер-адміном (через can)
-        if (!$this->can('demote_admin')) { // Перевірка дозволу
-            return "Недостатньо прав для пониження адміністраторів.";
+    public function demoteAdmin(int $userId) { // Túto deklaráciu ponechávame
+        // Kontrola, či má aktuálny užívateľ rolu super-administrátora (cez can)
+        if (!$this->can('demote_admin')) { // Kontrola povolenia
+            return "Nedostatočné oprávnenia na degradáciu administrátorov.";
         }
 
-        // Перевіряємо, чи користувач, якого намагаються понизити, не є поточним залогіненим супер-адміном
+        // Kontrola, či užívateľ, ktorého sa snažia degradovať, nie je aktuálne prihlásený super-administrátor
         if ($userId === ($_SESSION['user']['id'] ?? null) && $this->userRole === 'superadmin') {
-            return "Не можна понизити самого себе.";
+            return "Nemôžete degradovať samého seba.";
         }
 
         try {
-            // Перевіряємо, чи користувач з таким ID існує і є адміністратором
+            // Kontrola, či užívateľ s takýmto ID existuje a je administrátorom
             $stmt = $this->conn->prepare("SELECT rola FROM users WHERE id_user = ?");
             $stmt->execute([$userId]);
             $user = $stmt->fetch();
 
             if (!$user) {
-                return "Користувача з ID {$userId} не знайдено.";
+                return "Používateľ s ID {$userId} nebol nájdený.";
             }
 
             if ($user['rola'] !== 'admin') {
-                return "Користувач ID: {$userId} не є адміністратором.";
+                return "Používateľ ID: {$userId} nie je administrátorom.";
             }
-            // Додаткова перевірка, щоб супер-адмін не міг понизити іншого супер-адміна через цю функцію.
-            // Якщо ви хочете дозволити пониження супер-адміна, вам знадобиться інша логіка.
+            // Dodatočná kontrola, aby super-administrátor nemohol degradovať iného super-administrátora prostredníctvom tejto funkcie.
+            // Ak chcete povoliť degradáciu super-administrátora, budete potrebovať inú logiku.
             if ($user['rola'] === 'superadmin') {
-                return "Не можна понизити супер-адміна до користувача безпосередньо. Це вимагає окремої логіки.";
+                return "Nemôžete degradovať super-administrátora na užívateľa priamo. Toto vyžaduje samostatnú logiku.";
             }
 
 
-            // Виконуємо оновлення ролі
+            // Vykonanie aktualizácie roly
             $stmt = $this->conn->prepare("UPDATE users SET rola = 'user' WHERE id_user = ? AND rola = 'admin'");
             $stmt->execute([$userId]);
 
             if ($stmt->rowCount() > 0) {
                 return true;
             } else {
-                return "Не вдалося понизити адміністратора (можливо, він вже не є адміном).";
+                return "Nepodarilo sa degradovať administrátora (možno už nie je adminom).";
             }
         } catch (PDOException $e) {
-            return "Помилка бази даних при пониженні: " . $e->getMessage();
+            return "Chyba databázy pri degradácii: " . $e->getMessage();
         }
     }
 
     /**
-     * Метод для видалення користувача.
-     * @param int $userId ID користувача, якого потрібно видалити.
-     * @return string|true Повідомлення про помилку або true у разі успіху.
+     * Metóda na odstránenie užívateľa.
+     * @param int $userId ID užívateľa, ktorého je potrebné odstrániť.
+     * @return string|true Správa o chybe alebo true v prípade úspechu.
      */
     public function deleteUser($userId) {
         if (!$this->can('delete_users')) {
-            return "Недостатньо прав для виконання цієї дії.";
+            return "Nedostatočné oprávnenia na vykonanie tejto akcie.";
         }
 
-        // Заборона видалення власного облікового запису супер-адміном
+        // Zákaz odstránenia vlastného účtu super-administrátorom
         $loggedUser = $this->authClass->getLoggedUser();
         if ($loggedUser && $loggedUser['id'] == $userId) {
-            return "Ви не можете видалити власний обліковий запис.";
+            return "Nemôžete odstrániť svoj vlastný účet.";
         }
 
         try {
@@ -125,21 +125,21 @@ class SuperAdminClass extends AdminClass {
             if ($stmt->rowCount() > 0) {
                 return true;
             } else {
-                return "Користувача з таким ID не знайдено.";
+                return "Používateľ s takýmto ID nebol nájdený.";
             }
         } catch (PDOException $e) {
-            return "Помилка при видаленні користувача: " . $e->getMessage();
+            return "Chyba pri odstraňovaní užívateľa: " . $e->getMessage();
         }
     }
 
     /**
-     * Метод для видалення питання.
-     * @param int $questionId ID питання, яке потрібно видалити.
-     * @return string|true Повідомлення про помилку або true у разі успіху.
+     * Metóda na odstránenie otázky.
+     * @param int $questionId ID otázky, ktorú je potrebné odstrániť.
+     * @return string|true Správa o chybe alebo true v prípade úspechu.
      */
     public function deleteQuestion($questionId) {
         if (!$this->can('delete_questions')) {
-            return "Недостатньо прав для виконання цієї дії.";
+            return "Nedostatočné oprávnenia na vykonanie tejto akcie.";
         }
 
         try {
@@ -148,10 +148,10 @@ class SuperAdminClass extends AdminClass {
             if ($stmt->rowCount() > 0) {
                 return true;
             } else {
-                return "Питання з таким ID не знайдено.";
+                return "Otázka s takýmto ID nebola nájdená.";
             }
         } catch (PDOException $e) {
-            return "Помилка при видаленні питання: " . $e->getMessage();
+            return "Chyba pri odstraňovaní otázky: " . $e->getMessage();
         }
     }
 }
