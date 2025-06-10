@@ -1,6 +1,5 @@
 <?php
-function greet()
-{
+function greet(){
     $hour = date("H");
     if ($hour < 12 && !isset($_SESSION['user']['meno'])) {
         return "Good morning";
