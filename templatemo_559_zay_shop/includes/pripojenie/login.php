@@ -3,16 +3,20 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 session_start();
-require_once('../../classes/userClass.php');
-use user\UserClass;
 
-$user = new UserClass();
+// Правильний шлях до AuthClass.php
+require_once(__DIR__ . '/../../classes/AuthClass.php');
+
+// Використовуємо запропонований namespace для AuthClass
+use App\Auth\AuthClass;
+// Створюємо екземпляр AuthClass
+$auth = new AuthClass();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $heslo = $_POST['heslo'] ?? '';
 
-    if ($user->login($email, $heslo)) {
+    if ($auth->login($email, $heslo)) { // Використовуємо об'єкт $auth
         header("Location: ../../stranky/index.php");
         exit;
     } else {

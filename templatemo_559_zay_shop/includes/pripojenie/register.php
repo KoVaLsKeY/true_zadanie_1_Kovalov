@@ -1,9 +1,14 @@
 <?php
 session_start();
-require_once('../../classes/userClass.php');
-use user\UserClass;
 
-$user = new UserClass();
+// Правильний шлях до AuthClass.php (з тієї ж папки, що й login.php)
+require_once(__DIR__ . '/../../classes/AuthClass.php');
+
+// Використовуємо запропонований namespace для AuthClass
+use App\Auth\AuthClass;
+
+// Створюємо екземпляр AuthClass
+$auth = new AuthClass();
 
 $sprava = ""; // Для повідомлення
 
@@ -13,10 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $heslo = $_POST['heslo'] ?? '';
 
     if (!empty($meno) && !empty($email) && !empty($heslo)) {
-        $vysledok = $user->register($meno, $email, $heslo);
+        // Метод register тепер приймає необов'язковий аргумент $rola, за замовчуванням 'user'
+        $vysledok = $auth->register($meno, $email, $heslo); // Використовуємо об'єкт $auth
 
         if ($vysledok === true) {
-            $sprava = "<p style='color:green;text-align:center;'>Registrácia úspešná! <a href='login.php'>Prihlásiť sa</a></p>";
+            $sprava = "<p style='color:green;text-align:center;'>Registrácia úspešná! <a href='login.php'>Prihlásiť sa</a></p>"; // Шлях до login.php
         } else {
             // htmlspecialchars захищає від XSS
             $sprava = "<p style='color:red;text-align:center;'>" . htmlspecialchars($vysledok) . "</p>";
@@ -50,6 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="submit" value="Registrovať sa">
 </form>
 
-<p style="text-align:center;"><a href="login.php">Už máš účet? Prihlás sa</a></p>
+<p style="text-align:center;"><a href="login.php">Už máš účет? Prihlás sa</a></p>
 </body>
 </html>
