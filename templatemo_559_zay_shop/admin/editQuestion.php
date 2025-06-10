@@ -1,8 +1,19 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user']) || $_SESSION['user']['rola'] !== 'admin') {
-    header('Location: index.php');
+require_once '../classes/AuthClass.php';
+require_once '../classes/PermissionClass.php';
+require_once '../classes/AdminClass.php';
+
+use App\Auth\AuthClass;
+use App\Roles\AdminClass; // Використовуємо AdminClass для перевірки дозволу
+
+$auth = new AuthClass();
+$adminPermissions = new AdminClass($auth); // Ініціалізуємо AdminClass для перевірки дозволів адміна
+
+// Перевірка, чи користувач залогінений та має дозвіл на редагування питань
+if (!$auth->isLoggedIn() || !$adminPermissions->can('edit_questions')) {
+    header('Location: index.php'); // Перенаправлення на головну сторінку, якщо немає доступу
     exit;
 }
 
@@ -53,19 +64,19 @@ if (!$questionData) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body class="container mt-5">
-    <h2>Upraviť otázku</h2>
+<h2>Upraviť otázku</h2>
 
-    <form method="post">
-        <div class="mb-3">
-            <label for="question" class="form-label">Otázka</label>
-            <textarea name="sprava" id="sprava" class="form-control" rows="3" required><?= htmlspecialchars($questionData['sprava']) ?></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="answer" class="form-label">Odpoveď</label>
-            <textarea name="odpoved" id="odpoved" class="form-control" rows="3"><?= htmlspecialchars($questionData['odpoved'] ?? '') ?></textarea>
-        </div>
-        <button type="submit" class="btn btn-success">Uložiť</button>
-        <a href="../db/allQuestions.php" class="btn btn-secondary">Späť</a>
-    </form>
+<form method="post">
+    <div class="mb-3">
+        <label for="sprava" class="form-label">Otázka</label>
+        <textarea name="sprava" id="sprava" class="form-control" rows="3" required><?= htmlspecialchars($questionData['sprava']) ?></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="odpoved" class="form-label">Odpoveď</label>
+        <textarea name="odpoved" id="odpoved" class="form-control" rows="3"><?= htmlspecialchars($questionData['odpoved'] ?? '') ?></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Uložiť</button>
+    <a href="../db/allQuestions.php" class="btn btn-secondary">Späť</a>
+</form>
 </body>
 </html>

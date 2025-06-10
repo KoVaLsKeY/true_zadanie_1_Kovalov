@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user']) || $_SESSION['user']['rola'] !== 'admin') {
-    header('Location: ../index.php');
+if (!isset($_SESSION['user']) || ($_SESSION['user']['rola'] !== 'superadmin' && $_SESSION['user']['rola'] !== 'admin')) {
+    header('Location: ../index.php'); // Перенаправити на головну сторінку
     exit;
 }
 
